@@ -13,6 +13,15 @@ const Table = styled.table`
   width: 500px;
 `;
 
+const ItemContainer = styled.td`
+  padding: 0 8px;
+
+  &:hover {
+    border-radius: 10px;
+    background: #333;
+  }
+`;
+
 const Item = styled.span`
   display: flex;
   flex-grow: 1;
@@ -92,9 +101,9 @@ const List = () => {
         <tbody>
           {todos.map(todo => (
             <tr key={todo.todo_id}>
-              <td>
+              <ItemContainer>
                 <Item>{todo.description}</Item>
-              </td>
+              </ItemContainer>
               <IconContainer>
                 <td>
                   <Edit todo={todo} />
