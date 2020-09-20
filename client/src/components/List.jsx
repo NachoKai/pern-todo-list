@@ -14,7 +14,7 @@ const Table = styled.table`
 `;
 
 const ItemContainer = styled.td`
-  padding: 0 8px;
+  padding: 8px;
 
   &:hover {
     border-radius: 10px;
