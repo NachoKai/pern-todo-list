@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Edit from "./Edit";
 
 const Container = styled.div`
   width: 100%;
@@ -12,19 +13,21 @@ const Table = styled.table`
   width: 500px;
 `;
 
-const Title = styled.span``;
-
-const Item = styled.span``;
-
-const IconContainer = styled.div`
-  width: 50px;
-  margin: 0;
+const Item = styled.span`
+  display: flex;
+  flex-grow: 1;
 `;
 
-const Button = styled.button`
+const IconContainer = styled.div`
+  margin: 0;
+  padding: 0;
+  width: 0;
+`;
+
+export const Button = styled.button`
   display: inline-block;
   text-decoration: none;
-  padding: 0.3rem 0.6rem;
+  padding: 0.5rem 0.6rem;
   font-family: sans-serif;
   color: #fff;
   font-size: 1.2rem;
@@ -32,7 +35,7 @@ const Button = styled.button`
   border-radius: 10px;
   box-shadow: 2px 1px 7px #000;
   transition: all 0.3s;
-  margin: 0 0 0 1rem;
+  margin: 0.5rem 0.5rem;
   background: linear-gradient(
     90deg,
     ${p => (p.isDelete ? "#ff6b6b" : "#fcc419")},
@@ -72,8 +75,6 @@ const List = () => {
     getTodos();
   }, []);
 
-  const handleEdit = () => {};
-
   const deleteTodo = async id => {
     try {
       const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
@@ -88,21 +89,6 @@ const List = () => {
   return (
     <Container>
       <Table>
-        <thead>
-          <tr>
-            <th>
-              <Title>Description</Title>
-            </th>
-            <IconContainer>
-              <th>
-                <Title>Edit</Title>
-              </th>
-              <th>
-                <Title>Delete</Title>
-              </th>
-            </IconContainer>
-          </tr>
-        </thead>
         <tbody>
           {todos.map(todo => (
             <tr key={todo.todo_id}>
@@ -111,9 +97,7 @@ const List = () => {
               </td>
               <IconContainer>
                 <td>
-                  <Button onClick={handleEdit}>
-                    <i class="fas fa-pencil-alt"></i>
-                  </Button>
+                  <Edit todo={todo} />
                 </td>
                 <td>
                   <Button isDelete onClick={() => deleteTodo(todo.todo_id)}>

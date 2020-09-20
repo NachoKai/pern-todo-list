@@ -10,6 +10,8 @@ const Container = styled.div`
   background: #222;
   color: #eee;
   height: 100vh;
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
 `;
 
 function App() {

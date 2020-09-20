@@ -5,21 +5,31 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 2rem 0;
+  width: 500px;
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+`;
 
 const Form = styled.form`
   display: flex;
+  width: 100%;
 `;
 
 const InputTodo = styled.input`
   background: #eee;
   color: 222;
   border-radius: 10px;
+  display: flex;
+  flex-grow: 1;
 `;
 
 const Button = styled.button`
+  font-weight: bold;
   display: inline-block;
   text-decoration: none;
   padding: 0.5rem 1rem;
@@ -70,10 +80,10 @@ const Input = () => {
 
   return (
     <Container>
-      <Title>ToDo List</Title>
+      <Title>TO-DO LIST</Title>
       <Form onSubmit={onSubmitForm}>
         <InputTodo type="text" value={description} onChange={handleChange} />
-        <Button>Add</Button>
+        <Button>ADD</Button>
       </Form>
     </Container>
   );
