@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const PORT = 5000;
 const pool = require("./db");
+const PORT = 5000;
 
 // middleware
 app.use(cors());
@@ -28,6 +28,7 @@ app.post("/todos", async (req, res) => {
 app.get("/todos", async (req, res) => {
   try {
     const allTodos = await pool.query("SELECT * FROM todo");
+
     res.json(allTodos.rows);
   } catch (error) {
     console.error(error.message);
@@ -51,7 +52,6 @@ app.put("/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { description } = req.body;
-
     const updateTodo = await pool.query("UPDATE todo SET description = $1 WHERE todo_id = $2", [
       description,
       id,
