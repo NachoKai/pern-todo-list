@@ -1,0 +1,82 @@
+import React, { useState } from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h1``;
+
+const Form = styled.form`
+  display: flex;
+`;
+
+const InputTodo = styled.input`
+  background: #eee;
+  color: 222;
+  border-radius: 10px;
+`;
+
+const Button = styled.button`
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  font-family: sans-serif;
+  color: #fff;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 4px 3px 15px #364fc7;
+  transition: all 0.3s;
+  margin: 0 0 0 1rem;
+  background: linear-gradient(90deg, #748ffc, #5f3dc4);
+
+  &:hover {
+    transform: translateY(-2px);
+    cursor: pointer;
+    background: linear-gradient(60deg, #748ffc, #5f3dc4);
+    box-shadow: 4px 3px 18px #364fc7;
+  }
+  &:active {
+    transform: translateY(3px);
+    box-shadow: 4px 3px 5px #364fc7;
+  }
+`;
+
+const Input = () => {
+  const [description, setDescription] = useState("");
+
+  const handleChange = e => {
+    setDescription(e.target.value);
+  };
+
+  const onSubmitForm = async e => {
+    e.preventDefault();
+    try {
+      const body = { description };
+      const response = await fetch("http://localhost:5000/todos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      window.location = "/";
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  return (
+    <Container>
+      <Title>ToDo List</Title>
+      <Form onSubmit={onSubmitForm}>
+        <InputTodo type="text" value={description} onChange={handleChange} />
+        <Button>Add</Button>
+      </Form>
+    </Container>
+  );
+};
+
+export default Input;
