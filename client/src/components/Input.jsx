@@ -13,6 +13,7 @@ const Title = styled.h1`
   width: 100%;
   font-weight: bold;
   text-align: center;
+  font-size: 3rem;
 `;
 
 const Form = styled.form`

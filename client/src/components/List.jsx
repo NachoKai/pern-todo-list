@@ -33,6 +33,16 @@ const IconContainer = styled.div`
   width: 0;
 `;
 
+const Placeholder = styled.span`
+  font-size: 1.5rem;
+  padding: 8px;
+  border: 3px dashed #eee;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
+
 export const Button = styled.button`
   display: inline-block;
   text-decoration: none;
@@ -98,25 +108,29 @@ const List = () => {
   return (
     <Container>
       <Table>
-        <tbody>
-          {todos.map(todo => (
-            <tr key={todo.todo_id}>
-              <ItemContainer>
-                <Item>{todo.description}</Item>
-              </ItemContainer>
-              <IconContainer>
-                <td>
-                  <Edit todo={todo} />
-                </td>
-                <td>
-                  <Button isDelete onClick={() => deleteTodo(todo.todo_id)}>
-                    <i class="far fa-trash-alt"></i>
-                  </Button>
-                </td>
-              </IconContainer>
-            </tr>
-          ))}
-        </tbody>
+        {todos.length > 0 ? (
+          <tbody>
+            {todos.map(todo => (
+              <tr key={todo.todo_id}>
+                <ItemContainer>
+                  <Item>{todo.description}</Item>
+                </ItemContainer>
+                <IconContainer>
+                  <td>
+                    <Edit todo={todo} />
+                  </td>
+                  <td>
+                    <Button isDelete onClick={() => deleteTodo(todo.todo_id)}>
+                      <i class="far fa-trash-alt"></i>
+                    </Button>
+                  </td>
+                </IconContainer>
+              </tr>
+            ))}
+          </tbody>
+        ) : (
+          <Placeholder>Add some To-do!</Placeholder>
+        )}
       </Table>
     </Container>
   );
