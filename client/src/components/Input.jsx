@@ -82,7 +82,7 @@ const Input = () => {
   return (
     <Container>
       <Title>TO-DO LIST</Title>
-      <Form onSubmit={onSubmitForm}>
+      <Form onSubmit={description.trim().length > 0 && onSubmitForm}>
         <InputTodo type="text" value={description} onChange={handleChange} maxLength="250" />
         <Button>ADD</Button>
       </Form>

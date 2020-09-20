@@ -81,7 +81,7 @@ const Edit = ({ todo }) => {
                 type="button"
                 className="btn btn-warning"
                 data-dismiss="modal"
-                onClick={e => updateDescription(e)}
+                onClick={e => description.trim().length > 0 && updateDescription(e)}
               >
                 Edit
               </button>
